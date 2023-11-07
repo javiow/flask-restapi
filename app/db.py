@@ -30,3 +30,39 @@ def sql_controller(query, var=None, db='test.db'):
     conn.close()
 
     return None
+
+def main():
+    conn = sqlite3.connect('test.db')
+    cur = conn.cursor()
+
+    cur.execute(
+        """
+        create table if not exists user(
+            user_id text primary key,
+            article_id text
+        );
+        """
+    )
+    cur.execute(
+        """
+        create table if not exists article(
+            article_id text primary key,
+            picture_id text
+        );
+        """
+    )
+    cur.execute(
+        """
+        create table if not exists picture(
+            picture_id text primary key
+        );
+        """
+    )
+
+    conn.commit()
+    conn.close
+
+    "### Create USER, ARTICLE, PICURE Table ###"
+
+if __name__ == "__main__":
+    main()
